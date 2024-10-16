@@ -6,7 +6,6 @@ import my.aisa_it_test.dto.RecipeDTO;
 import my.aisa_it_test.entities.Ingredient;
 import my.aisa_it_test.entities.Recipe;
 import my.aisa_it_test.entities.RecipeIngredient;
-import my.aisa_it_test.repositories.IngredientRepository;
 import my.aisa_it_test.repositories.RecipeIngredientRepository;
 import my.aisa_it_test.repositories.RecipeRepository;
 import org.springframework.stereotype.Service;

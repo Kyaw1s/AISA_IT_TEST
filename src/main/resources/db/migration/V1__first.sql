@@ -69,9 +69,15 @@ ALTER TABLE public.ingredients_seq OWNER TO ivan;
 
 CREATE TABLE public.order_statistics (
                                          id bigint NOT NULL,
-                                         date_time timestamp(6) without time zone,
+                                         date_time timestamp(6) without time zone NOT NULL,
                                          recipe_id bigint
-);
+) PARTITION BY RANGE (date_time);
+
+CREATE TABLE public.order_statistics_2024 PARTITION OF public.order_statistics
+    FOR VALUES FROM ('2024-01-01') TO ('2025-01-01');
+
+CREATE TABLE public.order_statistics_2025 PARTITION OF public.order_statistics
+    FOR VALUES FROM ('2025-01-01') TO ('2026-01-01');
 
 
 ALTER TABLE public.order_statistics OWNER TO ivan;
@@ -292,7 +298,7 @@ ALTER TABLE ONLY public.ingredients
 --
 
 ALTER TABLE ONLY public.order_statistics
-    ADD CONSTRAINT order_statistics_pkey PRIMARY KEY (id);
+    ADD CONSTRAINT order_statistics_pkey PRIMARY KEY (id, date_time);
 
 
 --
@@ -320,7 +326,7 @@ ALTER TABLE ONLY public.recipes
 -- Name: order_statistics fkggnpun8juwpiqqkf86eabfiww; Type: FK CONSTRAINT; Schema: public; Owner: ivan
 --
 
-ALTER TABLE ONLY public.order_statistics
+ALTER TABLE public.order_statistics
     ADD CONSTRAINT fkggnpun8juwpiqqkf86eabfiww FOREIGN KEY (recipe_id) REFERENCES public.recipes(id);
 
 

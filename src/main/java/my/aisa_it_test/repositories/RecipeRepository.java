@@ -2,6 +2,7 @@ package my.aisa_it_test.repositories;
 
 import my.aisa_it_test.dto.RecipeOrdersStatisticsDTO;
 import my.aisa_it_test.entities.Recipe;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 

@@ -7,6 +7,7 @@ import my.aisa_it_test.entities.Recipe;
 import my.aisa_it_test.repositories.OrderStatisticsRepository;
 import my.aisa_it_test.repositories.RecipeRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -33,6 +34,7 @@ public class OrderStatisticsService {
         return recipeRepository.findRecipesOrdersNumberDesc();
     }
 
+    @Transactional
     public void createOrdersStatistics(String recipeName) {
         Optional<Recipe> recipe = recipeService.findByName(recipeName);
 

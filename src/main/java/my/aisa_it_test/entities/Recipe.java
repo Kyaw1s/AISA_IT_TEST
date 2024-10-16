@@ -14,6 +14,6 @@ public class Recipe {
     private Long id;
 
     private String name;
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     private List<RecipeIngredient> ingredients;
 }
