@@ -16,9 +16,9 @@ import java.util.List;
 public class OrderStatisticsController {
     private final OrderStatisticsService orderStatisticsService;
 
-    @GetMapping("/most-popular")
-    public ResponseEntity<RecipeOrdersStatisticsDTO> getMostPopularRecipe() {
-        return ResponseEntity.ok(orderStatisticsService.getMostPopularRecipe());
+    @GetMapping("/top-recipe")
+    public ResponseEntity<RecipeOrdersStatisticsDTO> getTopRecipe() {
+        return ResponseEntity.ok(orderStatisticsService.getTopRecipe());
     }
 
     @GetMapping

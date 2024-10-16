@@ -25,7 +25,7 @@ public class RecipeService {
     @Transactional
     public void add(RecipeDTO recipeDTO) {
         if(recipeRepository.existsByName(recipeDTO.getName())) {
-            throw new RuntimeException("recipe already exists");
+            throw new IllegalArgumentException("recipe already exists");
         }
 
         Recipe recipe = new Recipe();
@@ -37,7 +37,7 @@ public class RecipeService {
             Optional<Ingredient> optionalIngredient = ingredientService.findByName(ingredientDTO.getName());
 
             if(optionalIngredient.isEmpty()) {
-                throw new RuntimeException("ingredient not found");
+                throw new IllegalArgumentException("ingredient not found");
             }
 
             RecipeIngredient recipeIngredient = new RecipeIngredient();
@@ -61,7 +61,7 @@ public class RecipeService {
     public void apply(String recipeName) {
         Optional<Recipe> recipe = findByName(recipeName);
         if(recipe.isEmpty()) {
-            throw new RuntimeException("recipe not found");
+            throw new IllegalArgumentException("recipe not found");
         }
 
         ingredientService.spendAvailableGrams(recipe.get());

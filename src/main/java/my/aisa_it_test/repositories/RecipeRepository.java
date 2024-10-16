@@ -13,10 +13,10 @@ public interface RecipeRepository extends CrudRepository<Recipe, Long> {
     boolean existsByName(String name);
     Optional<Recipe> findByName(String name);
 
-    @Query("select new my.aisa_it_test.dto.RecipeOrdersStatisticsDTO(r.name, count(os)) " +
+    @Query("select new my.aisa_it_test.dto.RecipeOrdersStatisticsDTO(r.name, count(os.id)) " +
             "from Recipe r left join OrderStatistics os " +
             "on r = os.recipe " +
             "group by r " +
-            "order by count(os) desc")
+            "order by count(os.id) desc")
     List<RecipeOrdersStatisticsDTO> findRecipesOrdersNumberDesc();
 }

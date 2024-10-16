@@ -26,7 +26,7 @@ public class IngredientService {
     @Transactional
     public void addIngredient(String name, Long quantityInGrams) {
         if(ingredientExists(name)) {
-            throw new RuntimeException("Ingredient already exists");
+            throw new IllegalArgumentException("Ingredient already exists");
         }
 
         Ingredient ingredient = new Ingredient();
@@ -40,7 +40,7 @@ public class IngredientService {
     public void increaseAvailableGrams(String name, Long quantityInGrams) {
         Optional<Ingredient> optionalIngredient = ingredientRepository.findByName(name);
         if(optionalIngredient.isEmpty()) {
-            throw new RuntimeException("Ingredient does not exist");
+            throw new IllegalArgumentException("Ingredient does not exist");
         }
 
         Ingredient ingredient = optionalIngredient.get();

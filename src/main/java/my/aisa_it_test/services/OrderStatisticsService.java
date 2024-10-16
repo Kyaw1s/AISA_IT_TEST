@@ -20,7 +20,7 @@ public class OrderStatisticsService {
     private final RecipeRepository recipeRepository;
     private final RecipeService recipeService;
 
-    public RecipeOrdersStatisticsDTO getMostPopularRecipe() {
+    public RecipeOrdersStatisticsDTO getTopRecipe() {
         RecipeOrdersStatisticsDTO mostPopular = getRecipesOrdersNumberDesc().get(0);
 
         if(mostPopular == null) {
@@ -39,7 +39,7 @@ public class OrderStatisticsService {
         Optional<Recipe> recipe = recipeService.findByName(recipeName);
 
         if(recipe.isEmpty()) {
-            throw new RuntimeException("recipe not found");
+            throw new IllegalArgumentException("recipe not found");
         }
 
         OrderStatistics orderStatistics = new OrderStatistics();
