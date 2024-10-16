@@ -15,6 +15,10 @@ import java.util.Optional;
 public class IngredientService {
     private final IngredientRepository ingredientRepository;
 
+    public Optional<Ingredient> findByName(String name) {
+        return ingredientRepository.findByName(name);
+    }
+
     public boolean ingredientExists(String name) {
         return ingredientRepository.existsByName(name);
     }
